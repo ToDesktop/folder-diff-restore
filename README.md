@@ -1,21 +1,30 @@
-````markdown
 # Folder Diff Restore
 
 **Folder Diff Restore**: Node.js library for comparing directories, generating diffs, and restoring directories based on those diffs.
 
 ## Table of Contents
 
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-  - [Creating a Diff](#creating-a-diff)
-  - [Restoring from a Diff](#restoring-from-a-diff)
-- [API Reference](#api-reference)
-  - [compareDirectories](#comparedirectories)
-  - [createDiff](#creatediff)
-  - [restoreDiff](#restorediff)
-- [Handling Symbolic Links](#handling-symbolic-links)
-- [Testing](#testing)
+- [Folder Diff Restore](#folder-diff-restore)
+  - [Table of Contents](#table-of-contents)
+  - [Features](#features)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [Creating a Diff](#creating-a-diff)
+    - [Restoring from a Diff](#restoring-from-a-diff)
+  - [API Reference](#api-reference)
+    - [compareDirectories](#comparedirectories)
+    - [createDiff](#creatediff)
+    - [restoreDiff](#restorediff)
+  - [Handling Symbolic Links](#handling-symbolic-links)
+    - [Symlink Comparison](#symlink-comparison)
+    - [Symlink Preservation](#symlink-preservation)
+    - [Important Notes](#important-notes)
+  - [Testing](#testing)
+    - [Running Tests](#running-tests)
+  - [Examples](#examples)
+    - [Example 1: Simple Directory Comparison and Diff Creation](#example-1-simple-directory-comparison-and-diff-creation)
+    - [Example 2: Restoring a Directory from a Diff](#example-2-restoring-a-directory-from-a-diff)
+  - [Acknowledgements](#acknowledgements)
 
 ## Features
 
@@ -33,7 +42,6 @@ Install the library via npm:
 ```bash
 npm install folder-diff-library
 ```
-````
 
 ## Usage
 
