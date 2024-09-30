@@ -167,7 +167,7 @@ export async function createDiff(
 
   // Save removed items metadata
   if (removedItems.length > 0) {
-    const metadataPath = path.join(diffFolder, "removed.json");
+    const metadataPath = path.join(diffFolder, "__folder-diff-metadata.json");
     await fs.writeJson(metadataPath, { removed: removedItems }, { spaces: 2 });
   }
 }
@@ -187,12 +187,12 @@ import * as path from "path";
  * Restores a directory by applying the diff folder.
  * @param targetFolder - Path to the target directory to restore (Folder A).
  * @param diffFolder - Path to the diff folder containing additions and modifications.
- * @param metadataPath - Path to the removed.json metadata file within the diff folder.
+ * @param metadataPath - Path to the __folder-diff-metadata.json metadata file within the diff folder.
  */
 export async function restoreDiff(
   targetFolder: string,
   diffFolder: string,
-  metadataPath: string = path.join(diffFolder, "removed.json")
+  metadataPath: string = path.join(diffFolder, "__folder-diff-metadata.json")
 ): Promise<void> {
   // Read removed items metadata
   let removedItems: string[] = [];
@@ -210,10 +210,10 @@ export async function restoreDiff(
   }
 
   // Apply Additions and Modifications
-  // Exclude 'removed.json' from being copied
+  // Exclude '__folder-diff-metadata.json' from being copied
   const filter = (src: string, dest: string): boolean => {
     const relative = path.relative(diffFolder, src);
-    if (relative === "removed.json") return false;
+    if (relative === "__folder-diff-metadata.json") return false;
     return true;
   };
 
@@ -344,11 +344,11 @@ This script will:
 
    - Compare `FolderA` and `FolderB`.
    - Copy added and modified files/directories from `FolderB` to `DiffFolder`.
-   - Record removed items in `DiffFolder/removed.json`.
+   - Record removed items in `DiffFolder/__folder-diff-metadata.json`.
 
 2. **Restore Folder A:**
    - Apply the diff by copying additions/modifications from `DiffFolder` to `FolderA`.
-   - Remove items listed in `DiffFolder/removed.json` from `FolderA`.
+   - Remove items listed in `DiffFolder/__folder-diff-metadata.json` from `FolderA`.
 
 ---
 
@@ -543,7 +543,7 @@ describe("createDiff", () => {
     expect(modifiedContent).toBe("This file was modified.");
 
     // Check removed metadata
-    const metadataPath = path.join(diffFolder, "removed.json");
+    const metadataPath = path.join(diffFolder, "__folder-diff-metadata.json");
     expect(await fs.pathExists(metadataPath)).toBe(true);
     const metadata = await fs.readJson(metadataPath);
     expect(metadata.removed).toContain("removed.txt");

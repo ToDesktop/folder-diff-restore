@@ -10,7 +10,11 @@ import { compare, Options, Result } from "dir-compare";
 export async function compareDirectories(
   path1: string,
   path2: string,
-  options: Options = { compareSize: true, compareContent: true }
+  options: Options = {
+    compareSize: true,
+    compareContent: true,
+    compareSymlink: true,
+  }
 ): Promise<Result> {
   try {
     const res = await compare(path1, path2, options);
