@@ -40,7 +40,7 @@
 Install the library via npm:
 
 ```bash
-npm install folder-diff-library
+npm install folder-diff-restore
 ```
 
 ## Usage
@@ -51,7 +51,7 @@ To compare two directories and generate a diff folder:
 
 ```typescript
 import path from "path";
-import { createDiff, DiffOptions } from "folder-diff-library";
+import { createDiff, DiffOptions } from "folder-diff-restore";
 
 async function createDirectoryDiff() {
   // Define paths
@@ -83,7 +83,7 @@ To apply the diff folder and restore the original directory to match the new sta
 
 ```typescript
 import path from "path";
-import { restoreDiff } from "folder-diff-library";
+import { restoreDiff } from "folder-diff-restore";
 
 async function restoreDirectory() {
   // Define paths
@@ -239,7 +239,7 @@ The library uses Jest for testing. To run the tests:
 
 ```typescript
 import path from "path";
-import { createDiff } from "folder-diff-library";
+import { createDiff } from "folder-diff-restore";
 
 async function createSimpleDiff() {
   const folderA = path.resolve(__dirname, "OriginalFolder");
@@ -263,7 +263,7 @@ createSimpleDiff();
 
 ```typescript
 import path from "path";
-import { restoreDiff } from "folder-diff-library";
+import { restoreDiff } from "folder-diff-restore";
 
 async function restoreFromDiff() {
   const targetFolder = path.resolve(__dirname, "OriginalFolder");
