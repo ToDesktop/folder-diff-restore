@@ -1,13 +1,15 @@
 {
   "name": "folder-diff-restore",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A TypeScript library to compare two directories, generate diffs, and restore directories based on diffs.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "release": "npm run build && npx np --tag=latest",
+    "release-beta": "npm run build && npx np --any-branch --no-tests --tag=beta"
   },
   "keywords": [
     "folder",
